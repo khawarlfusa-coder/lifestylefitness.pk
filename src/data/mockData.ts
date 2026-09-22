@@ -101,19 +101,19 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "camu-camu",
-    name: "Wild-Harvested Camu Camu Berry Powder",
-    tagline: "World's Highest Source of Vitamin C & Immune Booster | 100g",
+    name: "LF Clean Living Camu Camu Berry Powder",
+    tagline: "Natural Source of Vitamin C • Immunity • Antioxidants • Wellness | 100% Natural",
     price: 3200,
     originalPrice: 3900,
     category: "superfood",
-    image: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&q=80&w=800",
-    badge: "Super Immunity",
-    description: "Pure Amazonian Camu Camu berry extract. Packed with 60x more Vitamin C than an orange! Powerful anti-inflammatory, detoxifies liver, reduces cortisol (stress hormone causing belly fat), and repairs collagen.",
+    image: "/images/camu-camu.jpg",
+    badge: "100% Natural Vitamin C",
+    description: "Official Lifestyle Fitness (LF Clean Living) Camu Camu Berry Powder. 100% pure and natural wild-harvested Amazonian superfood. The world's most concentrated natural source of Vitamin C, loaded with bioflavonoids and powerful antioxidants. Promotes immune defense, healthy skin and collagen repair, hormonal cortisol balance (targeting stubborn belly fat), and clean natural vitality. 'Small Superfoods, Big Change!'",
     features: [
-      "60x More Vitamin C Than Fresh Oranges",
-      "Flushes Out Stubborn Water Retention",
-      "Reduces Cortisol Belly Fat & Stress",
-      "100% Pure, No Artificial Additives"
+      "Boosts Immunity: World's richest natural source of pure Vitamin C",
+      "Healthy Skin: Stimulates natural collagen synthesis and radiant skin",
+      "Powerful Antioxidants: Combats oxidative stress and cortisol belly fat",
+      "Natural Energy: Sustained daytime vitality and fatigue defense"
     ],
     stock: 28
   },

@@ -5,11 +5,8 @@ import {
   ShoppingBag, 
   Menu, 
   X, 
-  ShieldCheck, 
   Phone,
   Lock,
-  Sparkles,
-  ExternalLink
 } from "lucide-react";
 
 interface NavbarProps {
@@ -50,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className="sticky top-0 z-50 bg-dark-950/85 backdrop-blur-xl border-b border-white/[0.08] transition-all duration-300">
       
-      {/* Top Announcement Bar - Sleek, Minimal, High-End */}
+      {/* Top Announcement Bar - Sleek, Minimal */}
       <div className="bg-gradient-to-r from-dark-950 via-emerald-950/50 to-dark-950 text-slate-300 text-[11px] py-1.5 px-4 text-center font-medium border-b border-white/5 flex flex-wrap items-center justify-center gap-2 sm:gap-4">
         <span className="inline-flex items-center gap-1.5 text-brand-400 font-bold uppercase tracking-wider text-[10px]">
           <span className="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" />
@@ -76,40 +73,26 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Brand Logo & Authority */}
+          {/* Official Brand Logo Emblem Only (Clean, Icon-Only, No Redundant Text) */}
           <div 
             onClick={() => handleNavClick("home")}
-            className="flex items-center gap-3.5 cursor-pointer group select-none"
+            className="flex items-center cursor-pointer group select-none shrink-0"
+            title="Lifestyle Fitness PK - Khawar Khan"
           >
             <div className="relative">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden p-0.5 bg-gradient-to-tr from-yellow-400 via-amber-400 to-yellow-500 shadow-md shadow-yellow-500/20 group-hover:scale-105 transition-transform duration-300">
+              <div className="w-12 h-12 sm:w-13 sm:h-13 rounded-full overflow-hidden p-0.5 bg-gradient-to-tr from-yellow-400 via-amber-400 to-yellow-500 shadow-lg shadow-yellow-500/25 group-hover:scale-105 transition-transform duration-300">
                 <img
                   src="/images/lf-logo.png"
                   alt="Lifestyle Fitness Official Emblem"
                   className="w-full h-full object-cover rounded-full bg-black"
                 />
               </div>
-              <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-brand-400 border-2 border-dark-950 rounded-full" />
-            </div>
-
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-lg sm:text-xl font-black tracking-tight text-white font-heading group-hover:text-slate-100 transition-colors">
-                  LIFESTYLE <span className="text-brand-400">FITNESS</span>
-                </span>
-                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-brand-400/10 text-brand-300 border border-brand-400/30 tracking-wider">
-                  PK
-                </span>
-              </div>
-              <p className="text-[11px] text-slate-400 flex items-center gap-1 font-medium">
-                <ShieldCheck className="w-3.5 h-3.5 text-brand-400" />
-                Khawar Khan • ISSA USA Certified
-              </p>
+              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-brand-400 border-2 border-dark-950 rounded-full" />
             </div>
           </div>
 
           {/* Luxury Minimalist Desktop Navigation */}
-          <nav className="hidden xl:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => {
               const isActive = activeTab === link.id;
               return (
@@ -157,7 +140,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={openAdmin}
               className="p-2.5 rounded-xl bg-dark-850 hover:bg-dark-800 text-slate-400 hover:text-brand-300 border border-white/10 transition-all"
-              title="Khawar Khan Admin CMS"
+              title="Khawar Khan Admin CMS (/admin)"
             >
               <Lock className="w-4 h-4" />
             </button>
@@ -177,7 +160,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Mobile Menu Toggle Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2.5 rounded-xl bg-dark-850 hover:bg-dark-800 text-slate-200 border border-white/10"
+              className="lg:hidden p-2.5 rounded-xl bg-dark-850 hover:bg-dark-800 text-slate-200 border border-white/10"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -188,7 +171,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="xl:hidden border-t border-white/10 bg-dark-900/98 backdrop-blur-2xl px-4 py-4 space-y-1.5 animate-fadeIn">
+        <div className="lg:hidden border-t border-white/10 bg-dark-900/98 backdrop-blur-2xl px-4 py-4 space-y-1.5 animate-fadeIn">
           {navLinks.map((link) => {
             const isActive = activeTab === link.id;
             return (

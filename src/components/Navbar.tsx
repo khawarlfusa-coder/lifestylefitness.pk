@@ -2,19 +2,14 @@
 
 import React, { useState } from "react";
 import { 
-  Dumbbell, 
   ShoppingBag, 
-  MessageSquareText, 
-  Calculator, 
-  Video, 
-  Camera, 
   Menu, 
   X, 
   ShieldCheck, 
   Phone,
   Lock,
   Sparkles,
-  Flame
+  ExternalLink
 } from "lucide-react";
 
 interface NavbarProps {
@@ -34,14 +29,16 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Clean, high-end, uncluttered navigation links
   const navLinks = [
-    { id: "home", label: "Home", icon: Dumbbell },
-    { id: "videos", label: "Video Library", icon: Video },
-    { id: "calculators", label: "Health Suite", icon: Calculator },
-    { id: "ai-scanner", label: "AI Calorie Scan", icon: Camera, badge: "AI" },
-    { id: "store", label: "Superfood Store", icon: ShoppingBag },
-    { id: "chat", label: "Consultation", icon: MessageSquareText, badge: "Live" },
-    { id: "articles", label: "Diet Guides", icon: Sparkles },
+    { id: "home", label: "Home" },
+    { id: "transformations", label: "Transformations", highlight: true },
+    { id: "videos", label: "Video Vault" },
+    { id: "store", label: "Superfood Store" },
+    { id: "calculators", label: "Calculators" },
+    { id: "ai-scanner", label: "AI Calorie Scan" },
+    { id: "chat", label: "Consultation" },
+    { id: "articles", label: "Diet Guides" },
   ];
 
   const handleNavClick = (id: string) => {
@@ -51,52 +48,56 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-50 glass-panel border-b border-white/10 transition-all duration-300">
-      {/* Top Notification Announcement */}
-      <div className="bg-gradient-to-r from-dark-950 via-emerald-950/80 to-dark-950 text-emerald-300 text-xs py-2 px-4 text-center font-medium border-b border-brand-500/20 flex flex-wrap items-center justify-center gap-2">
-        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-black bg-brand-400 text-dark-950 tracking-wider shadow-sm shadow-brand-400/30">
-          ISSA USA CERTIFIED
+    <header className="sticky top-0 z-50 bg-dark-950/85 backdrop-blur-xl border-b border-white/[0.08] transition-all duration-300">
+      
+      {/* Top Announcement Bar - Sleek, Minimal, High-End */}
+      <div className="bg-gradient-to-r from-dark-950 via-emerald-950/50 to-dark-950 text-slate-300 text-[11px] py-1.5 px-4 text-center font-medium border-b border-white/5 flex flex-wrap items-center justify-center gap-2 sm:gap-4">
+        <span className="inline-flex items-center gap-1.5 text-brand-400 font-bold uppercase tracking-wider text-[10px]">
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" />
+          ISSA USA Certified Nutritionist
         </span>
-        <span className="text-slate-200">
-          Consultation with Nutritionist <strong>Khawar Khan</strong> | 317k+ Community
+        <span className="hidden sm:inline text-white/30">•</span>
+        <span className="text-slate-300">
+          Khawar Khan | 317k+ YouTube Community
         </span>
+        <span className="hidden sm:inline text-white/30">•</span>
         <a 
-          href="https://wa.me/923182112122?text=Assalam%20o%20Alaikum%20Khawar%20Khan,%20I%20visited%20your%20website%20and%20want%20consultation" 
+          href="https://wa.me/923182112122?text=Assalam%20o%20Alaikum%20Khawar%20Khan,%20I%20want%20to%20consult%20regarding%20weight%20loss" 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="inline-flex items-center gap-1.5 text-brand-400 hover:text-white font-bold ml-1 transition-colors group"
+          className="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-bold transition-colors"
         >
-          <span className="w-2 h-2 rounded-full bg-brand-400 animate-pulse" />
-          <Phone className="w-3 h-3 group-hover:rotate-12 transition-transform" />
-          <span className="underline decoration-brand-400/50">+92 318 2112122</span>
+          <Phone className="w-2.5 h-2.5" />
+          <span>WhatsApp: +92 318 2112122</span>
         </a>
       </div>
 
+      {/* Main Navbar Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Brand Logo */}
+          {/* Brand Logo & Authority */}
           <div 
             onClick={() => handleNavClick("home")}
-            className="flex items-center gap-3.5 cursor-pointer group"
+            className="flex items-center gap-3.5 cursor-pointer group select-none"
           >
             <div className="relative">
-              <div className="w-12 h-12 rounded-full overflow-hidden p-0.5 bg-gradient-to-tr from-yellow-400 via-amber-400 to-yellow-500 shadow-lg shadow-yellow-500/25 group-hover:scale-105 transition-all duration-300">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden p-0.5 bg-gradient-to-tr from-yellow-400 via-amber-400 to-yellow-500 shadow-md shadow-yellow-500/20 group-hover:scale-105 transition-transform duration-300">
                 <img
                   src="/images/lf-logo.png"
-                  alt="Lifestyle Fitness Official Logo"
+                  alt="Lifestyle Fitness Official Emblem"
                   className="w-full h-full object-cover rounded-full bg-black"
                 />
               </div>
-              <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-brand-400 border-2 border-dark-900 rounded-full" />
+              <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-brand-400 border-2 border-dark-950 rounded-full" />
             </div>
 
             <div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-xl sm:text-2xl font-black tracking-tight text-white font-heading">
-                  LIFESTYLE <span className="text-gradient-emerald">FITNESS</span>
+              <div className="flex items-center gap-2">
+                <span className="text-lg sm:text-xl font-black tracking-tight text-white font-heading group-hover:text-slate-100 transition-colors">
+                  LIFESTYLE <span className="text-brand-400">FITNESS</span>
                 </span>
-                <span className="text-[10px] font-black px-1.5 py-0.5 rounded-md bg-brand-400/10 text-brand-300 border border-brand-400/30">
+                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-brand-400/10 text-brand-300 border border-brand-400/30 tracking-wider">
                   PK
                 </span>
               </div>
@@ -107,78 +108,77 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1.5">
+          {/* Luxury Minimalist Desktop Navigation */}
+          <nav className="hidden xl:flex items-center gap-1">
             {navLinks.map((link) => {
-              const Icon = link.icon;
               const isActive = activeTab === link.id;
               return (
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.id)}
-                  className={`relative px-3.5 py-2 rounded-xl text-xs font-bold tracking-wide transition-all flex items-center gap-2 ${
+                  className={`relative px-3.5 py-2 rounded-xl text-[13px] font-semibold tracking-normal transition-all duration-200 flex items-center gap-1.5 ${
                     isActive
-                      ? "text-white bg-white/10 border border-brand-400/40 shadow-md shadow-brand-500/10"
-                      : "text-slate-300 hover:text-white hover:bg-white/5 border border-transparent"
+                      ? "text-white bg-white/[0.08] shadow-sm"
+                      : "text-slate-300 hover:text-white hover:bg-white/[0.04]"
                   }`}
                 >
-                  <Icon className={`w-4 h-4 transition-colors ${isActive ? "text-brand-400" : "text-slate-400"}`} />
                   <span>{link.label}</span>
-                  {link.badge && (
-                    <span className={`text-[9px] font-black px-1.5 py-0.2 rounded-full tracking-wider ${
-                      link.badge === "AI" 
-                        ? "bg-purple-500/20 text-purple-300 border border-purple-500/40" 
-                        : "bg-brand-400/20 text-brand-300 border border-brand-400/40"
-                    }`}>
-                      {link.badge}
-                    </span>
+                  
+                  {link.highlight && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-400 shadow-sm shadow-brand-400" />
+                  )}
+
+                  {isActive && (
+                    <span className="absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-brand-400 rounded-full" />
                   )}
                 </button>
               );
             })}
           </nav>
 
-          {/* Right Action Icons */}
-          <div className="flex items-center gap-3">
+          {/* Right Action Icons & Direct WhatsApp */}
+          <div className="flex items-center gap-2.5 sm:gap-3">
             
-            {/* Cart Trigger */}
+            {/* Shopping Cart Pill */}
             <button
               onClick={openCart}
-              className="relative p-2.5 rounded-xl bg-dark-800 text-slate-200 hover:text-white hover:bg-dark-750 border border-white/10 transition-all hover:border-brand-400/40"
+              className="relative p-2.5 rounded-xl bg-dark-850 hover:bg-dark-800 text-slate-200 hover:text-white border border-white/10 transition-all hover:border-brand-400/40"
               title="Shopping Cart"
             >
-              <ShoppingBag className="w-5 h-5 text-brand-400" />
+              <ShoppingBag className="w-4 h-4 text-brand-400" />
               {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-brand-400 text-dark-950 text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center shadow-lg shadow-brand-400/50 animate-pulse">
+                <span className="absolute -top-1.5 -right-1.5 bg-brand-400 text-dark-950 text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-md shadow-brand-400/40">
                   {cartCount}
                 </span>
               )}
             </button>
 
-            {/* Admin Key */}
+            {/* Admin Key Lock */}
             <button
               onClick={openAdmin}
-              className="p-2.5 rounded-xl bg-dark-800 text-slate-400 hover:text-brand-400 hover:bg-dark-750 border border-white/10 transition-all"
-              title="Khawar Khan Admin Dashboard"
+              className="p-2.5 rounded-xl bg-dark-850 hover:bg-dark-800 text-slate-400 hover:text-brand-300 border border-white/10 transition-all"
+              title="Khawar Khan Admin CMS"
             >
               <Lock className="w-4 h-4" />
             </button>
 
-            {/* Official WhatsApp Button */}
+            {/* Official Direct WhatsApp Button */}
             <a
               href="https://wa.me/923182112122?text=Assalam%20o%20Alaikum%20Khawar%20Khan,%20I%20want%20to%20consult%20regarding%20weight%20loss%20and%20diet%20plan"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-xs shadow-lg shadow-emerald-600/30 transition-all hover:scale-105"
+              className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-dark-950 font-black text-xs shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
-              <Phone className="w-3.5 h-3.5" />
-              <span>+92 318 2112122</span>
+              <Phone className="w-3.5 h-3.5 fill-dark-950" />
+              <span className="hidden sm:inline font-heading font-black tracking-tight">+92 318 2112122</span>
+              <span className="sm:hidden font-heading font-black">WhatsApp</span>
             </a>
 
-            {/* Mobile Menu Toggle */}
+            {/* Mobile Menu Toggle Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2.5 rounded-xl bg-dark-800 text-slate-200 hover:text-white border border-white/10"
+              className="xl:hidden p-2.5 rounded-xl bg-dark-850 hover:bg-dark-800 text-slate-200 border border-white/10"
+              aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -186,29 +186,25 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-white/10 bg-dark-900/98 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-2 animate-fadeIn">
+        <div className="xl:hidden border-t border-white/10 bg-dark-900/98 backdrop-blur-2xl px-4 py-4 space-y-1.5 animate-fadeIn">
           {navLinks.map((link) => {
-            const Icon = link.icon;
             const isActive = activeTab === link.id;
             return (
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold transition-all ${
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
                   isActive
                     ? "bg-brand-400/15 text-brand-300 border border-brand-400/30"
                     : "text-slate-300 hover:bg-white/5"
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <Icon className={`w-5 h-5 ${isActive ? "text-brand-400" : "text-slate-400"}`} />
-                  <span>{link.label}</span>
-                </div>
-                {link.badge && (
+                <span>{link.label}</span>
+                {link.highlight && (
                   <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-brand-400/20 text-brand-300">
-                    {link.badge}
+                    Results
                   </span>
                 )}
               </button>
@@ -220,10 +216,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               href="https://wa.me/923182112122?text=Assalam%20o%20Alaikum%20Khawar%20Khan"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 rounded-xl bg-emerald-600 text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-lg"
+              className="w-full py-3 rounded-xl bg-emerald-500 text-dark-950 font-black text-xs flex items-center justify-center gap-2 shadow-lg"
             >
-              <Phone className="w-4 h-4" />
-              <span>WhatsApp: +92 318 2112122</span>
+              <Phone className="w-4 h-4 fill-dark-950" />
+              <span>WhatsApp Khawar: +92 318 2112122</span>
             </a>
 
             <button
@@ -234,7 +230,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs text-slate-400 hover:text-white"
             >
               <Lock className="w-3.5 h-3.5 text-slate-400" />
-              <span>Admin CMS Portal</span>
+              <span>Khawar Khan Admin CMS</span>
             </button>
           </div>
         </div>

@@ -14,6 +14,7 @@ import {
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { StatsBar } from "@/components/StatsBar";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { HealthCalculators } from "@/components/HealthCalculators";
 import { AIFoodScanner } from "@/components/AIFoodScanner";
@@ -76,7 +77,7 @@ export default function Home() {
 
   const handleDirectOrder = (product: Product) => {
     const text = encodeURIComponent(
-      `Assalam o Alaikum Khawar Khan (+92 318 2112122)! Mujhe "${product.name}" (Rs. ${product.price.toLocaleString()}) order karna hai. Baraye meherbani process aur delivery details share karein.`
+      `Assalam o Alaikum Khawar Khan (+92 318 2112122)! Mujhe "${product.name}" (Rs. ${product.price.toLocaleString()}) order karna hai. Baraye meherbani delivery aur payment process share karein.`
     );
     window.open(`https://wa.me/${KHAWAR_PHONE}?text=${text}`, "_blank");
   };
@@ -153,6 +154,10 @@ export default function Home() {
           <Hero setActiveTab={setActiveTab} />
           <StatsBar />
           
+          {/* Client Transformations Section */}
+          <TestimonialsSection onConsultClick={() => setActiveTab("chat")} />
+
+          {/* Superfood Store Section */}
           <div className="py-6">
             <StoreSection
               onAddToCart={handleAddToCart}
@@ -172,19 +177,27 @@ export default function Home() {
         </>
       )}
 
+      {activeTab === "transformations" && (
+        <TestimonialsSection onConsultClick={() => setActiveTab("chat")} />
+      )}
+
       {activeTab === "videos" && <VideoLibrary />}
+      
       {activeTab === "calculators" && (
         <HealthCalculators onConsultClick={() => setActiveTab("chat")} />
       )}
+
       {activeTab === "ai-scanner" && (
         <AIFoodScanner onAskKhawar={() => setActiveTab("chat")} />
       )}
+
       {activeTab === "store" && (
         <StoreSection
           onAddToCart={handleAddToCart}
           onDirectOrder={handleDirectOrder}
         />
       )}
+
       {activeTab === "chat" && (
         <ConsultationChat
           messages={messages}
@@ -192,6 +205,7 @@ export default function Home() {
           onUnlockMessage={handleUnlockMessage}
         />
       )}
+
       {activeTab === "articles" && <ArticlesSection articles={articleList} />}
 
       {/* Cart Drawer */}
@@ -218,11 +232,11 @@ export default function Home() {
         href={`https://wa.me/${KHAWAR_PHONE}?text=Assalam%20o%20Alaikum%20Khawar%20Khan,%20I%20want%20to%20consult%20regarding%20weight%20loss`}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-20 lg:bottom-8 right-6 z-40 p-4 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-2xl shadow-emerald-600/50 hover:scale-110 transition-all flex items-center justify-center group"
+        className="fixed bottom-20 lg:bottom-8 right-6 z-40 p-4 rounded-full bg-emerald-500 hover:bg-emerald-400 text-dark-950 shadow-2xl shadow-emerald-500/30 hover:scale-110 transition-all flex items-center justify-center group"
         title="Direct WhatsApp: +92 318 2112122"
       >
-        <Phone className="w-6 h-6 fill-white" />
-        <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-black pl-0 group-hover:pl-2.5 font-heading">
+        <Phone className="w-6 h-6 fill-dark-950" />
+        <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-black pl-0 group-hover:pl-2.5 font-heading text-dark-950">
           WhatsApp: +92 318 2112122
         </span>
       </a>

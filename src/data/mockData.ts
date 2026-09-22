@@ -137,21 +137,21 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "recipe-book",
-    name: "Lifestyle Fitness Ultimate Fat Loss Recipe Book",
-    tagline: "100+ Delicious Desi & Low-Calorie Recipes | Digital & Print",
+    name: "The Weight Loss Recipe Book",
+    tagline: "50+ Healthy & Delicious Recipes | Healthy • Simple • Delicious",
     price: 1999,
     originalPrice: 2999,
     category: "ebook",
-    image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=800",
-    badge: "Instant PDF Access",
-    description: "Transform your favorite foods into fat-burning meals! Includes Low-Calorie Biryani, High-Protein Shawarma, Fat Loss Parathas, Detox Smoothies, and Guilt-Free Desserts with full macros.",
+    image: "/images/recipe-book.jpg",
+    badge: "Official LF Recipe Book",
+    description: "Official 'The Weight Loss Recipe Book' by Khawar Khan (ISSA USA Certified Nutritionist). Featuring 50+ healthy, simple, and delicious fat-loss recipes designed for everyday Pakistani and international lifestyles without starvation. Includes healthy breakfast bowls, low-calorie avocado toasts, detox green smoothies, high-protein meals, and clean desserts with complete calorie and macronutrient breakdowns.",
     features: [
-      "100+ Tested Pakistani & Fusion Recipes",
-      "Complete Calories, Protein, Carbs & Fats Breakdown",
-      "Easy 15-Minute Preparation Steps",
-      "Bonus: 7-Day Quick Fat-Burn Kickstart Plan"
+      "50+ Healthy, Simple & Delicious Fat-Loss Recipes",
+      "Exact Calorie, Protein, Carb & Fat Breakdown per Dish",
+      "Quick & Easy 15-Minute Preparation Methods",
+      "Includes Smoothies, Desi Healthy Meals & Fat-Loss Snacks"
     ],
-    stock: 100
+    stock: 85
   }
 ];
 

@@ -33,6 +33,26 @@ export interface Article {
   image: string;
 }
 
+export interface Order {
+  id: string;
+  customerName: string;
+  phone: string;
+  city: string;
+  address: string;
+  items: {
+    productId: string;
+    productName: string;
+    quantity: number;
+    price: number;
+  }[];
+  subtotal: number;
+  shippingFee: number;
+  total: number;
+  paymentMethod: "Cash on Delivery (COD)" | "WhatsApp Order";
+  status: "Pending" | "Confirmed" | "Dispatched" | "Delivered";
+  createdAt: string;
+}
+
 export interface ChatMessage {
   id: string;
   sender: "user" | "khawar";
@@ -263,3 +283,82 @@ export const INITIAL_CHAT: ChatMessage[] = [
     unlocked: true
   }
 ];
+
+export const INITIAL_ORDERS: Order[] = [
+  {
+    id: "LF-1048",
+    customerName: "Mohammad Usman",
+    phone: "0300 8472910",
+    city: "Lahore",
+    address: "House 42, Block B, Model Town, Lahore",
+    items: [
+      {
+        productId: "matcha-tea",
+        productName: "Lifestyle Fitness Ceremonial Matcha Green Tea (50g)",
+        quantity: 2,
+        price: 2850
+      },
+      {
+        productId: "chia-seeds",
+        productName: "Organic Whole Chia Seeds (250g)",
+        quantity: 1,
+        price: 1450
+      }
+    ],
+    subtotal: 7150,
+    shippingFee: 0,
+    total: 7150,
+    paymentMethod: "Cash on Delivery (COD)",
+    status: "Pending",
+    createdAt: "Today at 2:45 PM"
+  },
+  {
+    id: "LF-1047",
+    customerName: "Fatima Noor",
+    phone: "0321 4983021",
+    city: "Karachi",
+    address: "Flat 4-B, Al-Noor Heights, Gulshan-e-Iqbal Block 13-D, Karachi",
+    items: [
+      {
+        productId: "custom-diet-plan",
+        productName: "1-on-1 Customized Weight Loss Diet Plan (30 Days)",
+        quantity: 1,
+        price: 6500
+      }
+    ],
+    subtotal: 6500,
+    shippingFee: 0,
+    total: 6500,
+    paymentMethod: "WhatsApp Order",
+    status: "Confirmed",
+    createdAt: "Today at 11:20 AM"
+  },
+  {
+    id: "LF-1046",
+    customerName: "Ahmed Bilal",
+    phone: "0333 5129844",
+    city: "Islamabad",
+    address: "House 19, Street 44, Sector F-8/2, Islamabad",
+    items: [
+      {
+        productId: "camu-camu",
+        productName: "Wild-Harvested Camu Camu Berry Powder (100g)",
+        quantity: 1,
+        price: 3200
+      },
+      {
+        productId: "recipe-book",
+        productName: "Ultimate Fat Loss Recipe Book",
+        quantity: 1,
+        price: 1999
+      }
+    ],
+    subtotal: 5199,
+    shippingFee: 0,
+    total: 5199,
+    paymentMethod: "Cash on Delivery (COD)",
+    status: "Dispatched",
+    createdAt: "Yesterday at 6:15 PM"
+  }
+];
+

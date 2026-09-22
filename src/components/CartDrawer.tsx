@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Product } from "@/data/mockData";
+import { Product, Order } from "@/data/mockData";
 import { 
   X, 
   Trash2, 
@@ -12,7 +12,8 @@ import {
   CheckCircle, 
   Truck,
   ShieldCheck,
-  ArrowRight
+  ArrowRight,
+  ExternalLink
 } from "lucide-react";
 import confetti from "canvas-confetti";
 
@@ -28,6 +29,7 @@ interface CartDrawerProps {
   onUpdateQuantity: (productId: string, quantity: number) => void;
   onRemoveItem: (productId: string) => void;
   onClearCart: () => void;
+  onPlaceOrder?: (order: Order) => void;
 }
 
 export const CartDrawer: React.FC<CartDrawerProps> = ({
@@ -37,13 +39,14 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   onUpdateQuantity,
   onRemoveItem,
   onClearCart,
+  onPlaceOrder,
 }) => {
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
-  const [orderPlaced, setOrderPlaced] = useState(false);
+  const [placedOrderDetails, setPlacedOrderDetails] = useState<Order | null>(null);
 
   if (!isOpen) return null;
 
@@ -52,7 +55,32 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   const total = subtotal + shippingFee;
 
   const handleWhatsAppCheckout = () => {
-    let message = `Assalam o Alaikum Khawar Khan (+92 318 2112122)!\nMujhe Lifestyle Fitness PK store se order karna hai:\n\n`;
+    const orderId = "LF-" + Math.floor(1000 + Math.random() * 9000);
+    
+    const newOrder: Order = {
+      id: orderId,
+      customerName: name || "WhatsApp Customer",
+      phone: phone || "Direct WhatsApp",
+      city: city || "Pakistan",
+      address: address || "Shared via WhatsApp",
+      items: items.map(item => ({
+        productId: item.product.id,
+        productName: item.product.name,
+        quantity: item.quantity,
+        price: item.product.price,
+      })),
+      subtotal,
+      shippingFee,
+      total,
+      paymentMethod: "WhatsApp Order",
+      status: "Confirmed",
+      createdAt: "Just now"
+    };
+
+    if (onPlaceOrder) onPlaceOrder(newOrder);
+
+    let message = `Assalam o Alaikum Khawar Khan (+92 318 2112122)!\nMujhe Lifestyle Fitness PK store se order karna hai:\n`;
+    message += `Order Reference: ${orderId}\n\n`;
     items.forEach((item, index) => {
       message += `${index + 1}. ${item.product.name} x ${item.quantity} = Rs. ${(item.product.price * item.quantity).toLocaleString()}\n`;
     });
@@ -72,19 +100,38 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
       return;
     }
 
-    setOrderPlaced(true);
+    const orderId = "LF-" + Math.floor(1000 + Math.random() * 9000);
+
+    const newOrder: Order = {
+      id: orderId,
+      customerName: name,
+      phone: phone,
+      city: city || "Pakistan",
+      address: address,
+      items: items.map(item => ({
+        productId: item.product.id,
+        productName: item.product.name,
+        quantity: item.quantity,
+        price: item.product.price,
+      })),
+      subtotal,
+      shippingFee,
+      total,
+      paymentMethod: "Cash on Delivery (COD)",
+      status: "Pending",
+      createdAt: "Just now"
+    };
+
+    if (onPlaceOrder) onPlaceOrder(newOrder);
+    setPlacedOrderDetails(newOrder);
+
     confetti({
-      particleCount: 90,
-      spread: 75,
+      particleCount: 100,
+      spread: 80,
       origin: { y: 0.6 }
     });
 
-    setTimeout(() => {
-      onClearCart();
-      setOrderPlaced(false);
-      setShowCheckoutForm(false);
-      onClose();
-    }, 4000);
+    onClearCart();
   };
 
   return (
@@ -95,17 +142,19 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
         className="absolute inset-0 bg-black/85 backdrop-blur-sm transition-opacity" 
       />
 
-      <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div className="fixed inset-y-0 right-0 max-w-full flex pl-6 sm:pl-10">
         <div className="w-screen max-w-md bg-dark-900 border-l border-white/10 shadow-2xl flex flex-col justify-between">
           
           {/* Header */}
-          <div className="p-6 border-b border-white/10 flex items-center justify-between bg-dark-950">
+          <div className="p-5 sm:p-6 border-b border-white/10 flex items-center justify-between bg-dark-950">
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-xl bg-brand-400/20 text-brand-400 flex items-center justify-center">
                 <ShoppingBag className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-base font-black text-white font-heading">Your Cart ({items.length})</h2>
+                <h2 className="text-base font-black text-white font-heading">
+                  Your Cart {placedOrderDetails ? "(Completed)" : `(${items.length})`}
+                </h2>
                 <p className="text-[11px] text-slate-400">Cash on Delivery & WhatsApp</p>
               </div>
             </div>
@@ -118,19 +167,71 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
           </div>
 
           {/* Body */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-4">
-            {orderPlaced ? (
-              <div className="text-center py-16 space-y-4">
+          <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4">
+            {placedOrderDetails ? (
+              /* Order Confirmation Card with direct WhatsApp copy button */
+              <div className="text-center py-8 space-y-5">
                 <div className="w-16 h-16 rounded-full bg-brand-400/20 text-brand-400 mx-auto flex items-center justify-center border border-brand-400/30">
                   <CheckCircle className="w-10 h-10" />
                 </div>
-                <h3 className="text-2xl font-black text-white font-heading">Shukriya! Order Confirmed</h3>
-                <p className="text-xs text-slate-300 max-w-xs mx-auto leading-relaxed">
-                  Aapka order receive ho chuka hai. Hamari team Khawar Khan ki janib se 24 ghante me tracking update WhatsApp karegi (+92 318 2112122).
-                </p>
-                <div className="p-4 rounded-2xl bg-dark-850 border border-white/10 text-xs text-brand-300 font-bold">
-                  Cash on Delivery (COD) Payment: Rs. {total.toLocaleString()}
+
+                <div className="space-y-1">
+                  <h3 className="text-2xl font-black text-white font-heading">Shukriya! Order Received</h3>
+                  <div className="inline-block px-3 py-1 bg-dark-800 rounded-lg text-xs font-mono font-bold text-brand-400 border border-brand-400/30">
+                    Order ID: {placedOrderDetails.id}
+                  </div>
                 </div>
+
+                <p className="text-xs text-slate-300 max-w-xs mx-auto leading-relaxed">
+                  Aapka Cash on Delivery order hamare system me darj ho chuka hai. Khawar Khan ki team 24 ghante ke andar verification ke liye rabta karegi.
+                </p>
+
+                {/* Summary Box */}
+                <div className="p-4 rounded-2xl bg-dark-850 border border-white/10 text-left space-y-2 text-xs">
+                  <div className="flex justify-between text-slate-300">
+                    <span>Customer:</span>
+                    <strong className="text-white">{placedOrderDetails.customerName}</strong>
+                  </div>
+                  <div className="flex justify-between text-slate-300">
+                    <span>Phone:</span>
+                    <strong className="text-white font-mono">{placedOrderDetails.phone}</strong>
+                  </div>
+                  <div className="flex justify-between text-slate-300">
+                    <span>City:</span>
+                    <strong className="text-white">{placedOrderDetails.city}</strong>
+                  </div>
+                  <div className="flex justify-between text-slate-300 pt-2 border-t border-white/10">
+                    <span>Total COD Payable:</span>
+                    <strong className="text-brand-400 font-heading text-sm">
+                      Rs. {placedOrderDetails.total.toLocaleString()}
+                    </strong>
+                  </div>
+                </div>
+
+                {/* Direct WhatsApp receipt to Khawar Khan */}
+                <a
+                  href={`https://wa.me/923182112122?text=${encodeURIComponent(
+                    `Assalam o Alaikum Khawar Khan (+92 318 2112122)!\nMaine Lifestyle Fitness website se Cash on Delivery order place kiya hai:\n\nOrder ID: ${placedOrderDetails.id}\nName: ${placedOrderDetails.customerName}\nPhone: ${placedOrderDetails.phone}\nCity: ${placedOrderDetails.city}\nAddress: ${placedOrderDetails.address}\n\nTotal Payable: Rs. ${placedOrderDetails.total.toLocaleString()}\n\nBaraye meherbani delivery process shuru karein.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-dark-950 font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 transition-all font-heading"
+                >
+                  <Phone className="w-4 h-4 fill-dark-950" />
+                  <span>Send Order Copy to Khawar on WhatsApp</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+
+                <button
+                  onClick={() => {
+                    setPlacedOrderDetails(null);
+                    setShowCheckoutForm(false);
+                    onClose();
+                  }}
+                  className="text-xs text-slate-400 hover:text-white underline font-semibold"
+                >
+                  Close & Continue Browsing
+                </button>
               </div>
             ) : items.length === 0 ? (
               <div className="text-center py-20 text-slate-500 space-y-3">
@@ -176,7 +277,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                     placeholder="0300 1234567"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full bg-dark-800 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-400"
+                    className="w-full bg-dark-800 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-400 font-mono"
                   />
                 </div>
 
@@ -197,7 +298,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   <textarea
                     required
                     rows={2}
-                    placeholder="House, Street, Area address"
+                    placeholder="House number, Street, Area address"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     className="w-full bg-dark-800 border border-white/10 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-brand-400"
@@ -219,7 +320,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               items.map((item) => (
                 <div
                   key={item.product.id}
-                  className="p-3.5 rounded-2xl bg-dark-800/80 border border-white/5 flex gap-3 items-center"
+                  className="p-3.5 rounded-2xl bg-dark-850/80 border border-white/5 flex gap-3 items-center"
                 >
                   <img
                     src={item.product.image}
@@ -259,7 +360,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
           </div>
 
           {/* Footer actions */}
-          {!orderPlaced && items.length > 0 && !showCheckoutForm && (
+          {!placedOrderDetails && items.length > 0 && !showCheckoutForm && (
             <div className="p-6 border-t border-white/10 bg-dark-950 space-y-3">
               <div className="space-y-1.5 text-xs text-slate-400">
                 <div className="flex justify-between">
@@ -289,10 +390,10 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
                 <button
                   onClick={handleWhatsAppCheckout}
-                  className="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 transition-all font-heading"
+                  className="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-dark-950 font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 transition-all font-heading"
                 >
-                  <Phone className="w-4 h-4" />
-                  <span>WhatsApp: +92 318 2112122</span>
+                  <Phone className="w-4 h-4 fill-dark-950" />
+                  <span>Order via WhatsApp (+92 318 2112122)</span>
                 </button>
               </div>
 

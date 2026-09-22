@@ -1,15 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   PRODUCTS, 
   VIDEOS, 
   ARTICLES, 
   INITIAL_CHAT, 
+  INITIAL_ORDERS,
   Product, 
   VideoItem, 
   Article, 
-  ChatMessage 
+  ChatMessage,
+  Order 
 } from "@/data/mockData";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
@@ -38,6 +40,42 @@ export default function Home() {
   const [messages, setMessages] = useState<ChatMessage[]>(INITIAL_CHAT);
   const [videoList, setVideoList] = useState<VideoItem[]>(VIDEOS);
   const [articleList, setArticleList] = useState<Article[]>(ARTICLES);
+  const [orders, setOrders] = useState<Order[]>(INITIAL_ORDERS);
+
+  // Sync orders with localStorage
+  useEffect(() => {
+    try {
+      const savedOrders = localStorage.getItem("lifestyle_orders");
+      if (savedOrders) {
+        const parsed = JSON.parse(savedOrders);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setOrders(parsed);
+        }
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+  const handlePlaceOrder = (newOrder: Order) => {
+    setOrders((prev) => {
+      const updated = [newOrder, ...prev];
+      try {
+        localStorage.setItem("lifestyle_orders", JSON.stringify(updated));
+      } catch (e) {}
+      return updated;
+    });
+  };
+
+  const handleUpdateOrderStatus = (orderId: string, status: Order["status"]) => {
+    setOrders((prev) => {
+      const updated = prev.map((o) => (o.id === orderId ? { ...o, status } : o));
+      try {
+        localStorage.setItem("lifestyle_orders", JSON.stringify(updated));
+      } catch (e) {}
+      return updated;
+    });
+  };
 
   // Cart operations
   const handleAddToCart = (product: Product) => {
@@ -77,7 +115,7 @@ export default function Home() {
 
   const handleDirectOrder = (product: Product) => {
     const text = encodeURIComponent(
-      `Assalam o Alaikum Khawar Khan (+92 318 2112122)! Mujhe "${product.name}" (Rs. ${product.price.toLocaleString()}) order karna hai. Baraye meherbani delivery aur payment process share karein.`
+      `Assalam o Alaikum Khawar Khan (+92 318 2112122)! Mujhe "${product.name}" (Rs. ${product.price.toLocaleString()}) order karna hai. Baraye meherbani delivery aur payment details share karein.`
     );
     window.open(`https://wa.me/${KHAWAR_PHONE}?text=${text}`, "_blank");
   };
@@ -208,7 +246,7 @@ export default function Home() {
 
       {activeTab === "articles" && <ArticlesSection articles={articleList} />}
 
-      {/* Cart Drawer */}
+      {/* Cart Drawer with onPlaceOrder hook */}
       <CartDrawer
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
@@ -216,12 +254,15 @@ export default function Home() {
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
         onClearCart={handleClearCart}
+        onPlaceOrder={handlePlaceOrder}
       />
 
-      {/* Admin Portal Modal */}
+      {/* Admin Portal Modal with Orders Management */}
       <AdminPortal
         isOpen={isAdminOpen}
         onClose={() => setIsAdminOpen(false)}
+        orders={orders}
+        onUpdateOrderStatus={handleUpdateOrderStatus}
         onReplyToChat={handleReplyFromAdmin}
         onAddVideo={handleAddVideo}
         onAddArticle={handleAddArticle}

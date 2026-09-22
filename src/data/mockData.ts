@@ -83,19 +83,19 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "chia-seeds",
-    name: "Organic Whole Chia Seeds (Premium)",
-    tagline: "High Fiber & Omega-3 Powerhouse | 250g",
+    name: "LF Clean Living Organic Chia Seeds",
+    tagline: "Rich in Omega-3 • Fiber • Protein | 100% Natural Super Food",
     price: 1450,
     originalPrice: 1950,
     category: "superfood",
-    image: "https://images.unsplash.com/photo-1589135233689-d56d7870a41f?auto=format&fit=crop&q=80&w=800",
-    badge: "Doctor Recommended",
-    description: "Cold-cleaned high-purity chia seeds. Expands in the stomach to create a feeling of fullness for hours, aids digestion, regulates blood sugar, and provides essential Omega-3 fatty acids.",
+    image: "/images/chia-seeds.jpg",
+    badge: "100% Natural Superfood",
+    description: "Official Lifestyle Fitness (LF Clean Living) Chia Seeds Super Food. 100% pure and natural, packed with heart-healthy Omega-3, high prebiotic dietary fiber, and plant-based protein. Designed to support effective weight management, digestive health, energy boosting, and appetite control during fasting. 'Small Seeds, Big Change!'",
     features: [
-      "11g Fiber per 2 tablespoons",
-      "Regulates Insulin & Prevents Sugar Spikes",
-      "Hydration Booster for Intermittent Fasting",
-      "Supports Glowing Skin & Hair"
+      "Weight Management: Expands in stomach to keep you full for hours",
+      "Heart Health: Rich source of essential Omega-3 fatty acids",
+      "Digestive Health: High prebiotic fiber regulates bowel movements",
+      "Boosts Energy: Clean fuel for intermittent fasting and daily vitality"
     ],
     stock: 80
   },

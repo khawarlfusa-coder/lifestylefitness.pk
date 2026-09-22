@@ -1,0 +1,24 @@
+{
+  "name": "Lifestyle Fitness PK - Khawar Khan",
+  "short_name": "Lifestyle Fitness",
+  "description": "USA Certified Nutritionist Khawar Khan (317k Subs) - Weight Loss, Diet Plans & Superfood Store",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07090e",
+  "theme_color": "#00f090",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/lf-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/lf-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

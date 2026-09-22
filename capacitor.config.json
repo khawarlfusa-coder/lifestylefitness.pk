@@ -1,0 +1,8 @@
+{
+  "appId": "pk.lifestylefitness.app",
+  "appName": "Lifestyle Fitness PK",
+  "webDir": "out",
+  "server": {
+    "androidScheme": "https"
+  }
+}

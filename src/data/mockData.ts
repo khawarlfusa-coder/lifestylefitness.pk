@@ -65,19 +65,19 @@ export interface ChatMessage {
 export const PRODUCTS: Product[] = [
   {
     id: "matcha-tea",
-    name: "Lifestyle Fitness Ceremonial Matcha Green Tea",
+    name: "Lifestyle Fitness Ceremonial Matcha Green Tea (50g)",
     tagline: "Ceremonial Grade Weight Loss Friendly | 50g Organic Pouch",
-    price: 2850,
-    originalPrice: 3500,
+    price: 2200,
+    originalPrice: 2800,
     category: "superfood",
     image: "/images/matcha-tea.jpg",
     badge: "Official LF Brand (50g)",
-    description: "Official Lifestyle Fitness Ceremonial Grade Matcha Green Tea. Packed with potent fat-burning EGCG antioxidants and chlorophyll. Boosts resting metabolic rate, targets stubborn visceral belly fat, and gives clean energy. We recommend only 1 cup per day (1 pinch of matcha).",
+    description: "Official Lifestyle Fitness Ceremonial Grade Matcha Green Tea (50g). Packed with potent fat-burning EGCG antioxidants and chlorophyll. Boosts resting metabolic rate, targets stubborn visceral belly fat, and gives clean energy. We recommend only 1 cup per day (1 pinch of matcha).",
     features: [
-      "Ceremonial Grade - Weight Loss Friendly",
-      "We recommend only 1 cup per day (1 pinch)",
-      "Non-GMO, 100% Vegan & Gluten Free Certified",
-      "Burns stubborn fat & suppresses appetite"
+      "Official 50g Ceremonial Grade Pouch",
+      "Weight Loss Friendly: Boosts metabolic fat burn",
+      "We recommend only 1 cup per day (1 pinch of matcha)",
+      "Non-GMO, 100% Vegan & Gluten Free Certified"
     ],
     stock: 45
   },
@@ -101,21 +101,22 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "camu-camu",
-    name: "LF Clean Living Camu Camu Berry Powder",
-    tagline: "Natural Source of Vitamin C • Immunity • Antioxidants • Wellness | 100% Natural",
-    price: 3200,
-    originalPrice: 3900,
+    name: "LF Clean Living Camu Camu Berry Powder (60g)",
+    tagline: "Natural Source of Vitamin C • Immunity • Antioxidants | 60g Pouch",
+    price: 2500,
+    originalPrice: 3200,
     category: "superfood",
     image: "/images/camu-camu.jpg",
-    badge: "100% Natural Vitamin C",
-    description: "Official Lifestyle Fitness (LF Clean Living) Camu Camu Berry Powder. 100% pure and natural wild-harvested Amazonian superfood. The world's most concentrated natural source of Vitamin C, loaded with bioflavonoids and powerful antioxidants. Promotes immune defense, healthy skin and collagen repair, hormonal cortisol balance (targeting stubborn belly fat), and clean natural vitality. 'Small Superfoods, Big Change!'",
+    badge: "Official 60g Pack",
+    description: "Official Lifestyle Fitness (LF Clean Living) Camu Camu Berry Powder (60g). 100% pure and natural wild-harvested Amazonian superfood. The world's most concentrated natural source of Vitamin C, loaded with bioflavonoids and powerful antioxidants. Promotes immune defense, healthy skin and collagen repair, hormonal cortisol balance (targeting stubborn belly fat), and clean natural vitality. 'Small Superfoods, Big Change!'",
     features: [
+      "Official 60g Premium Organic Pouch",
       "Boosts Immunity: World's richest natural source of pure Vitamin C",
       "Healthy Skin: Stimulates natural collagen synthesis and radiant skin",
       "Powerful Antioxidants: Combats oxidative stress and cortisol belly fat",
       "Natural Energy: Sustained daytime vitality and fatigue defense"
     ],
-    stock: 28
+    stock: 35
   },
   {
     id: "custom-diet-plan",
@@ -296,7 +297,7 @@ export const INITIAL_ORDERS: Order[] = [
         productId: "matcha-tea",
         productName: "Lifestyle Fitness Ceremonial Matcha Green Tea (50g)",
         quantity: 2,
-        price: 2850
+        price: 2200
       },
       {
         productId: "chia-seeds",
@@ -305,9 +306,9 @@ export const INITIAL_ORDERS: Order[] = [
         price: 1450
       }
     ],
-    subtotal: 7150,
+    subtotal: 5850,
     shippingFee: 0,
-    total: 7150,
+    total: 5850,
     paymentMethod: "Cash on Delivery (COD)",
     status: "Pending",
     createdAt: "Today at 2:45 PM"
@@ -342,20 +343,20 @@ export const INITIAL_ORDERS: Order[] = [
     items: [
       {
         productId: "camu-camu",
-        productName: "Wild-Harvested Camu Camu Berry Powder (100g)",
+        productName: "LF Clean Living Camu Camu Berry Powder (60g)",
         quantity: 1,
-        price: 3200
+        price: 2500
       },
       {
         productId: "recipe-book",
-        productName: "Ultimate Fat Loss Recipe Book",
+        productName: "The Weight Loss Recipe Book",
         quantity: 1,
         price: 1999
       }
     ],
-    subtotal: 5199,
+    subtotal: 4499,
     shippingFee: 0,
-    total: 5199,
+    total: 4499,
     paymentMethod: "Cash on Delivery (COD)",
     status: "Dispatched",
     createdAt: "Yesterday at 6:15 PM"

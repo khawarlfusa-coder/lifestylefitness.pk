@@ -32,10 +32,7 @@ import {
 } from "lucide-react";
 
 export default function AdminPage() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
+  const isAuthenticated = true; // /admin is protected by src/middleware.ts
   const [activeTab, setActiveTab] = useState<"orders" | "chat" | "video" | "article">("orders");
 
   // Orders State with localStorage persistence
@@ -76,19 +73,6 @@ export default function AdminPage() {
       console.error(e);
     }
   }, []);
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (
-      (password === "khawar123" || password === "admin") ||
-      (username.toLowerCase() === "khawar" && password === "khawar123")
-    ) {
-      setIsAuthenticated(true);
-      setErrorMsg("");
-    } else {
-      setErrorMsg("Ghalat password! Baraye meherbani 'khawar123' use karein.");
-    }
-  };
 
   const handleUpdateOrderStatus = (orderId: string, newStatus: Order["status"]) => {
     setOrders((prev) => {
@@ -160,7 +144,7 @@ export default function AdminPage() {
 
             {isAuthenticated && (
               <button
-                onClick={() => setIsAuthenticated(false)}
+                onClick={() => { window.location.href = "/api/logout"; }}
                 className="px-3 py-1.5 rounded-xl bg-dark-800 hover:bg-dark-750 text-slate-300 hover:text-rose-400 border border-white/5 text-xs font-bold transition-colors"
               >
                 Log Out
@@ -172,63 +156,7 @@ export default function AdminPage() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {!isAuthenticated ? (
-          /* Login Card */
-          <div className="max-w-md mx-auto py-12 space-y-6">
-            <div className="text-center space-y-2">
-              <div className="w-16 h-16 rounded-3xl bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 mx-auto flex items-center justify-center mb-4 shadow-lg shadow-yellow-400/10">
-                <ShieldCheck className="w-8 h-8" />
-              </div>
-              <h2 className="text-3xl font-black text-white font-heading">Admin Login</h2>
-              <p className="text-xs text-slate-400">
-                Log in to view incoming customer orders, manage diet consultation messages, and upload videos.
-              </p>
-            </div>
-
-            <form onSubmit={handleLogin} className="space-y-4 bg-dark-900 p-8 rounded-3xl border border-white/10 shadow-2xl">
-              <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1.5">
-                  Admin Username
-                </label>
-                <input
-                  type="text"
-                  placeholder="khawar"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="w-full bg-dark-800 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-400 font-medium"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1.5">
-                  Security Password
-                </label>
-                <input
-                  type="password"
-                  placeholder="Enter password (default: khawar123)"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-dark-800 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-400 font-medium"
-                />
-                {errorMsg && <p className="text-xs text-rose-400 mt-1.5">{errorMsg}</p>}
-              </div>
-
-              <div className="p-3.5 bg-dark-800/60 rounded-xl border border-white/5 text-xs text-slate-400 space-y-1">
-                <p className="font-semibold text-slate-300">Default Access Details:</p>
-                <p>• Login URL: <span className="text-brand-300 font-mono">/admin</span></p>
-                <p>• Username: <span className="text-white font-mono">khawar</span></p>
-                <p>• Password: <span className="text-brand-400 font-mono font-black">khawar123</span></p>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-4 rounded-xl bg-brand-400 hover:bg-brand-300 text-dark-950 font-black text-sm shadow-xl shadow-brand-400/20 transition-all font-heading"
-              >
-                Sign In to Dashboard
-              </button>
-            </form>
-          </div>
-        ) : (
+        {(
           /* Dashboard Container */
           <div className="space-y-6">
             

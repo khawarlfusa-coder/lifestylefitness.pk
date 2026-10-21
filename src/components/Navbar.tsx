@@ -14,7 +14,6 @@ interface NavbarProps {
   setActiveTab: (tab: string) => void;
   cartCount: number;
   openCart: () => void;
-  openAdmin: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -22,7 +21,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   setActiveTab,
   cartCount,
   openCart,
-  openAdmin,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -136,15 +134,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </button>
 
-            {/* Admin Key Lock */}
-            <button
-              onClick={openAdmin}
-              className="p-2.5 rounded-xl bg-dark-850 hover:bg-dark-800 text-slate-400 hover:text-brand-300 border border-white/10 transition-all"
-              title="Khawar Khan Admin CMS (/admin)"
-            >
-              <Lock className="w-4 h-4" />
-            </button>
-
             {/* Official Direct WhatsApp Button */}
             <a
               href="https://wa.me/923182112122?text=Assalam%20o%20Alaikum%20Khawar%20Khan,%20I%20want%20to%20consult%20regarding%20weight%20loss%20and%20diet%20plan"
@@ -204,17 +193,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Phone className="w-4 h-4 fill-dark-950" />
               <span>WhatsApp Khawar: +92 318 2112122</span>
             </a>
-
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                openAdmin();
-              }}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs text-slate-400 hover:text-white"
-            >
-              <Lock className="w-3.5 h-3.5 text-slate-400" />
-              <span>Khawar Khan Admin CMS</span>
-            </button>
           </div>
         </div>
       )}

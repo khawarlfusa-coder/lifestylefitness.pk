@@ -23,7 +23,6 @@ import { AIFoodScanner } from "@/components/AIFoodScanner";
 import { StoreSection } from "@/components/StoreSection";
 import { CartDrawer, CartItem } from "@/components/CartDrawer";
 import { ConsultationChat } from "@/components/ConsultationChat";
-import { AdminPortal } from "@/components/AdminPortal";
 import { ArticlesSection } from "@/components/ArticlesSection";
 import { Footer } from "@/components/Footer";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
@@ -37,7 +36,6 @@ export default function Home() {
   // Data states
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
-  const [isAdminOpen, setIsAdminOpen] = useState<boolean>(false);
   const [messages, setMessages] = useState<ChatMessage[]>(INITIAL_CHAT);
   const [videoList, setVideoList] = useState<VideoItem[]>(VIDEOS);
   const [articleList, setArticleList] = useState<Article[]>(ARTICLES);
@@ -185,7 +183,6 @@ export default function Home() {
         setActiveTab={setActiveTab}
         cartCount={totalCartCount}
         openCart={() => setIsCartOpen(true)}
-        openAdmin={() => setIsAdminOpen(true)}
       />
 
       {/* Main Views Container */}
@@ -257,17 +254,6 @@ export default function Home() {
         onRemoveItem={handleRemoveItem}
         onClearCart={handleClearCart}
         onPlaceOrder={handlePlaceOrder}
-      />
-
-      {/* Admin Portal Modal with Orders Management */}
-      <AdminPortal
-        isOpen={isAdminOpen}
-        onClose={() => setIsAdminOpen(false)}
-        orders={orders}
-        onUpdateOrderStatus={handleUpdateOrderStatus}
-        onReplyToChat={handleReplyFromAdmin}
-        onAddVideo={handleAddVideo}
-        onAddArticle={handleAddArticle}
       />
 
       {/* Floating WhatsApp Quick Action Button */}

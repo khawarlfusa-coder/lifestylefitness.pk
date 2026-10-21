@@ -4,7 +4,7 @@ export interface Product {
   tagline: string;
   price: number;
   originalPrice: number;
-  category: "superfood" | "diet_plan" | "ebook";
+  category: "superfood" | "diet_plan" | "ebook" | "deal";
   image: string;
   badge?: string;
   description: string;
@@ -64,6 +64,58 @@ export interface ChatMessage {
 
 export const PRODUCTS: Product[] = [
   {
+    id: "deal-1",
+    name: "Deal 1: Matcha Mini (30g) + 1-on-1 Diet Plan",
+    tagline: "Matcha Green Tea + Customized 30-Day Diet Plan",
+    price: 3000,
+    originalPrice: 8500,
+    category: "deal",
+    image: "/images/matcha-tea.jpg",
+    badge: "DEAL 1",
+    description: "Lifestyle Fitness Matcha Green Tea Mini (30g) together with the 1-on-1 Customized Weight Loss Diet Plan by Khawar Khan.",
+    features: [
+      "Matcha Green Tea Mini (30g)",
+      "1-on-1 Customized Diet Plan (30 Days)",
+      "Meal plan, calorie guide, recipes and WhatsApp support"
+    ],
+    stock: 20
+  },
+  {
+    id: "deal-2",
+    name: "Deal 2: Matcha Mini + Chia Seeds + Diet Plan",
+    tagline: "Matcha + Chia Seeds + Customized 30-Day Diet Plan",
+    price: 4000,
+    originalPrice: 9500,
+    category: "deal",
+    image: "/images/chia-seeds.jpg",
+    badge: "DEAL 2",
+    description: "Matcha Green Tea Mini (30g), Organic Chia Seeds and the 1-on-1 Customized Weight Loss Diet Plan by Khawar Khan.",
+    features: [
+      "Matcha Green Tea Mini (30g)",
+      "Organic Chia Seeds",
+      "1-on-1 Customized Diet Plan (30 Days)"
+    ],
+    stock: 20
+  },
+  {
+    id: "deal-3",
+    name: "Deal 3: Complete Weight Loss Bundle",
+    tagline: "Matcha + Chia Seeds + Camu Camu + Diet Plan",
+    price: 7000,
+    originalPrice: 12000,
+    category: "deal",
+    image: "/images/camu-camu.jpg",
+    badge: "DEAL 3 - BEST VALUE",
+    description: "The complete bundle: Matcha Green Tea Mini (30g), Organic Chia Seeds, Camu Camu Berry Powder (60g) and the 1-on-1 Customized Weight Loss Diet Plan.",
+    features: [
+      "Matcha Green Tea Mini (30g)",
+      "Organic Chia Seeds",
+      "Camu Camu Berry Powder (60g)",
+      "1-on-1 Customized Diet Plan (30 Days)"
+    ],
+    stock: 20
+  },
+  {
     id: "matcha-tea",
     name: "Lifestyle Fitness Ceremonial Matcha Green Tea (50g)",
     tagline: "Ceremonial Grade Weight Loss Friendly | 50g Organic Pouch",
@@ -82,11 +134,29 @@ export const PRODUCTS: Product[] = [
     stock: 45
   },
   {
+    id: "matcha-mini",
+    name: "Lifestyle Fitness Ceremonial Matcha Green Tea Mini (30g)",
+    tagline: "Ceremonial Grade Weight Loss Friendly | 30g Trial Pouch",
+    price: 1500,
+    originalPrice: 1900,
+    category: "superfood",
+    image: "/images/matcha-tea.jpg",
+    badge: "Mini Pack (30g)",
+    description: "Lifestyle Fitness Ceremonial Grade Matcha Green Tea in a handy 30g mini pouch. Same quality as the 50g pack, ideal for first-time users. We recommend only 1 cup per day (1 pinch of matcha).",
+    features: [
+      "30g Ceremonial Grade Mini Pouch",
+      "Weight Loss Friendly: Boosts metabolic fat burn",
+      "We recommend only 1 cup per day (1 pinch of matcha)",
+      "Non-GMO, 100% Vegan & Gluten Free"
+    ],
+    stock: 45
+  },
+  {
     id: "chia-seeds",
     name: "LF Clean Living Organic Chia Seeds",
     tagline: "Rich in Omega-3 • Fiber • Protein | 100% Natural Super Food",
-    price: 1450,
-    originalPrice: 1950,
+    price: 1000,
+    originalPrice: 1450,
     category: "superfood",
     image: "/images/chia-seeds.jpg",
     badge: "100% Natural Superfood",
@@ -98,6 +168,24 @@ export const PRODUCTS: Product[] = [
       "Boosts Energy: Clean fuel for intermittent fasting and daily vitality"
     ],
     stock: 80
+  },
+  {
+    id: "chia-seeds-pack2",
+    name: "LF Clean Living Organic Chia Seeds - Pack of 2",
+    tagline: "2 Pouches | Rich in Omega-3 • Fiber • Protein",
+    price: 1600,
+    originalPrice: 2000,
+    category: "superfood",
+    image: "/images/chia-seeds.jpg",
+    badge: "Pack of 2 - Save Rs. 400",
+    description: "Two pouches of LF Clean Living Chia Seeds Super Food at a lower price than buying separately. 100% pure and natural, rich in Omega-3, fiber and plant-based protein.",
+    features: [
+      "2 Pouches of Organic Chia Seeds",
+      "Save Rs. 400 compared to buying 2 singles",
+      "Rich source of Omega-3 fatty acids",
+      "High prebiotic fiber supports digestion"
+    ],
+    stock: 60
   },
   {
     id: "camu-camu",
@@ -122,7 +210,7 @@ export const PRODUCTS: Product[] = [
     id: "custom-diet-plan",
     name: "1-on-1 Customized Weight Loss Diet Plan",
     tagline: "Personalized by Khawar Khan (ISSA USA) | 30 Days",
-    price: 6500,
+    price: 7000,
     originalPrice: 9000,
     category: "diet_plan",
     image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800",

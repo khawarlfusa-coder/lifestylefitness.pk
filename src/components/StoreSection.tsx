@@ -57,6 +57,14 @@ export const StoreSection: React.FC<StoreSectionProps> = ({ onAddToCart, onDirec
             All Items
           </button>
           <button
+            onClick={() => setFilter("deal")}
+            className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all font-heading ${
+              filter === "deal" ? "bg-brand-400 text-dark-950 shadow-md" : "text-slate-400 hover:text-white"
+            }`}
+          >
+            Deals
+          </button>
+          <button
             onClick={() => setFilter("superfood")}
             className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all font-heading ${
               filter === "superfood" ? "bg-brand-400 text-dark-950 shadow-md" : "text-slate-400 hover:text-white"

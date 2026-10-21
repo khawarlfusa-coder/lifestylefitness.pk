@@ -28,6 +28,7 @@ import { ArticlesSection } from "@/components/ArticlesSection";
 import { Footer } from "@/components/Footer";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { Phone } from "lucide-react";
+import { sendOrderToSheet } from "@/lib/sendOrderToSheet";
 
 export default function Home() {
   const KHAWAR_PHONE = "923182112122";
@@ -58,6 +59,7 @@ export default function Home() {
   }, []);
 
   const handlePlaceOrder = (newOrder: Order) => {
+    sendOrderToSheet(newOrder);
     setOrders((prev) => {
       const updated = [newOrder, ...prev];
       try {

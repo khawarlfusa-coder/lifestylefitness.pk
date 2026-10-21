@@ -14,7 +14,7 @@ export async function POST(req: Request) {
   }
 
   const { username = "", password = "" } = await req.json().catch(() => ({}));
-  const ok = same(String(username), ADMIN_USER) && same(String(password), ADMIN_PASSWORD);
+  const ok = same(String(username).trim().toLowerCase(), ADMIN_USER.trim().toLowerCase()) && same(String(password), ADMIN_PASSWORD);
   if (!ok) {
     await new Promise((r) => setTimeout(r, 1000)); // slow down guessing
     return NextResponse.json({ error: "Ghalat username ya password" }, { status: 401 });

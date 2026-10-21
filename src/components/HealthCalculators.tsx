@@ -50,7 +50,7 @@ export const HealthCalculators: React.FC<HealthCalculatorsProps> = ({ onConsultC
       cat = "Underweight";
       col = "text-sky-400";
       advice = "Aapka wazan kam hai. Healthy muscle mass barhane ke liye calorie surplus, nuts, eggs, aur peanut butter shamil karein.";
-    } else if (bmi >= 25 && bmi < 29.9) {
+    } else if (bmi >= 25 && bmi < 30) {
       cat = "Overweight";
       col = "text-amber-400";
       advice = `Aapko taqreeban ${(w - maxHealthy).toFixed(1)} kilo wazan kam karne ki zaroorat hai. Matcha Green Tea, Chia Seeds aur 500 kcal deficit ka diet plan shuru karein.`;
@@ -85,7 +85,7 @@ export const HealthCalculators: React.FC<HealthCalculatorsProps> = ({ onConsultC
     const feet = parseInt(iwHeightFeet) || 5;
     const inches = parseInt(iwHeightInches) || 0;
     const totalInches = feet * 12 + inches;
-    const inchesOver5ft = Math.max(0, totalInches - 60);
+    const inchesOver5ft = totalInches - 60;
 
     let baseKg = 0;
     if (iwGender === "male") {
@@ -96,6 +96,10 @@ export const HealthCalculators: React.FC<HealthCalculatorsProps> = ({ onConsultC
 
     if (iwFrame === "small") baseKg *= 0.95;
     if (iwFrame === "large") baseKg *= 1.05;
+
+    // Devine goes unrealistically low under 5ft; never go below BMI 18.5
+    const heightM = totalInches * 0.0254;
+    baseKg = Math.max(baseKg, 18.5 * heightM * heightM);
 
     const finalKg = parseFloat(baseKg.toFixed(1));
     const finalLbs = parseFloat((finalKg * 2.20462).toFixed(1));
@@ -489,9 +493,9 @@ export const HealthCalculators: React.FC<HealthCalculatorsProps> = ({ onConsultC
                   <div className="w-14 h-14 rounded-2xl bg-brand-400/15 text-brand-400 mx-auto flex items-center justify-center">
                     <Scale className="w-7 h-7" />
                   </div>
-                  <h4 className="text-lg font-black text-white font-heading">Hamwi & Devine Formula</h4>
+                  <h4 className="text-lg font-black text-white font-heading">Devine Formula</h4>
                   <p className="text-xs text-slate-400 max-w-xs mx-auto">
-                    Apni height aur bone frame select karein taake doctor certified ideal wazan maloom ho sakay.
+                    Apni height aur bone frame select karein taake andaazan ideal wazan maloom ho sakay.
                   </p>
                   <button
                     onClick={calculateIdealWeight}
@@ -595,7 +599,7 @@ export const HealthCalculators: React.FC<HealthCalculatorsProps> = ({ onConsultC
                     <div className="bg-brand-400/10 border border-brand-400/30 p-3.5 rounded-xl flex items-center justify-between">
                       <div>
                         <p className="text-xs font-black text-brand-300 font-heading">Fat Loss Target (-500 kcal)</p>
-                        <p className="text-[11px] text-slate-400 font-medium">Safe 2 to 4 kilo fat loss monthly</p>
+                        <p className="text-[11px] text-slate-400 font-medium">Approx. 2 kilo fat loss monthly</p>
                       </div>
                       <span className="text-2xl font-black text-brand-400 font-heading">{calResult.fatLossDeficit} kcal</span>
                     </div>

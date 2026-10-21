@@ -100,11 +100,11 @@ export const StoreSection: React.FC<StoreSectionProps> = ({ onAddToCart, onDirec
           >
             <div>
               {/* Image & Badges */}
-              <div className="relative aspect-square w-full bg-slate-950 overflow-hidden">
+              <div className={`relative w-full bg-slate-950 overflow-hidden ${product.category === "deal" ? "aspect-video" : "aspect-square"}`}>
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
+                  className={`w-full h-full group-hover:scale-108 transition-transform duration-700 ${product.category === "deal" ? "object-contain" : "object-cover"}`}
                 />
                 
                 {product.badge && (

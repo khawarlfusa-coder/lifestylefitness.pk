@@ -65,12 +65,12 @@ export interface ChatMessage {
 export const PRODUCTS: Product[] = [
   {
     id: "deal-1",
-    name: "Deal 1: Matcha Mini (30g) + 1-on-1 Diet Plan",
-    tagline: "Matcha Green Tea + Customized 30-Day Diet Plan",
+    name: "Deal 1",
+    tagline: "Matcha Mini (30g) + 1-on-1 Customized 30-Day Diet Plan",
     price: 3000,
     originalPrice: 8500,
     category: "deal",
-    image: "/images/matcha-tea.jpg",
+    image: "/images/deals/deal-1.jpg",
     badge: "DEAL 1",
     description: "Lifestyle Fitness Matcha Green Tea Mini (30g) together with the 1-on-1 Customized Weight Loss Diet Plan by Khawar Khan.",
     features: [
@@ -82,12 +82,12 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "deal-2",
-    name: "Deal 2: Matcha Mini + Chia Seeds + Diet Plan",
-    tagline: "Matcha + Chia Seeds + Customized 30-Day Diet Plan",
+    name: "Deal 2",
+    tagline: "Matcha Mini + Chia Seeds + 1-on-1 Customized Diet Plan",
     price: 4000,
     originalPrice: 9500,
     category: "deal",
-    image: "/images/chia-seeds.jpg",
+    image: "/images/deals/deal-2.jpg",
     badge: "DEAL 2",
     description: "Matcha Green Tea Mini (30g), Organic Chia Seeds and the 1-on-1 Customized Weight Loss Diet Plan by Khawar Khan.",
     features: [
@@ -99,12 +99,12 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "deal-3",
-    name: "Deal 3: Complete Weight Loss Bundle",
+    name: "Deal 3 - Complete Weight Loss Bundle",
     tagline: "Matcha + Chia Seeds + Camu Camu + Diet Plan",
     price: 7000,
     originalPrice: 12000,
     category: "deal",
-    image: "/images/camu-camu.jpg",
+    image: "/images/deals/deal-3.jpg",
     badge: "DEAL 3 - BEST VALUE",
     description: "The complete bundle: Matcha Green Tea Mini (30g), Organic Chia Seeds, Camu Camu Berry Powder (60g) and the 1-on-1 Customized Weight Loss Diet Plan.",
     features: [

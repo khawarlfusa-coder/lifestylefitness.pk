@@ -115,7 +115,7 @@ export default function Home() {
 
   const handleDirectOrder = (product: Product) => {
     const text = encodeURIComponent(
-      `Assalam o Alaikum Khawar Khan (+92 318 2112122)! Mujhe "${product.name}" (Rs. ${product.price.toLocaleString()}) order karna hai. Baraye meherbani delivery aur payment details share karein.`
+      `Assalam o Alaikum Khawar Khan (+92 318 2112122)! Mujhe "${product.name}" (Rs. ${product.price.toLocaleString()} + Rs. 200 delivery) order karna hai. Baraye meherbani delivery aur payment details share karein.`
     );
     window.open(`https://wa.me/${KHAWAR_PHONE}?text=${text}`, "_blank");
   };

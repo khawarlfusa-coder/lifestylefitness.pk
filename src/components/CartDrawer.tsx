@@ -51,7 +51,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   if (!isOpen) return null;
 
   const subtotal = items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
-  const shippingFee = subtotal > 4000 || subtotal === 0 ? 0 : 250;
+  const shippingFee = subtotal === 0 ? 0 : 200; // flat delivery charges on every order
   const total = subtotal + shippingFee;
 
   const handleWhatsAppCheckout = () => {
@@ -85,7 +85,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
       message += `${index + 1}. ${item.product.name} x ${item.quantity} = Rs. ${(item.product.price * item.quantity).toLocaleString()}\n`;
     });
     message += `\nSubtotal: Rs. ${subtotal.toLocaleString()}`;
-    message += `\nDelivery: ${shippingFee === 0 ? "FREE" : "Rs. 250"}`;
+    message += `\nDelivery: Rs. ${shippingFee}`;
     message += `\nTotal: Rs. ${total.toLocaleString()}`;
     if (name) message += `\n\nName: ${name}\nPhone: ${phone}\nCity: ${city}\nAddress: ${address}`;
 
@@ -369,9 +369,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 </div>
                 <div className="flex justify-between">
                   <span>Delivery (All Pakistan)</span>
-                  <span className="text-emerald-400 font-bold">
-                    {shippingFee === 0 ? "FREE" : "Rs. 250"}
-                  </span>
+                  <span className="text-white font-bold">Rs. {shippingFee}</span>
                 </div>
                 <div className="flex justify-between text-base font-black text-white pt-2 border-t border-white/10 font-heading">
                   <span>Total Amount</span>
